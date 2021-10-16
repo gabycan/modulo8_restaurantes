@@ -1,15 +1,21 @@
 <h1> Listar los tipos de restaurantes </h1>
 
+<%= link_to @titulo_link, nuevo_tipo_comida_path %>
+
 <table>
     <tr>
         <th>id</th>
         <th>tipo</th>
+        <th>acciones</th>
     </tr>
 
 <% @todos_los_tipos.each do |tipo_comida| %>
     <tr>
         <th> <%= tipo_comida.id %> </th>
         <th> <%= tipo_comida.tipo %> </th>
+        <td>
+            Borrar <%= tipo_comida.id %>
+        </td>
     </tr>
 <% end %>
 
