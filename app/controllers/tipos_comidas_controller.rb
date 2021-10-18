@@ -3,16 +3,27 @@ class TiposComidasController < ApplicationController
     # GET /tipos_comidas
     def listar
         @todos_los_tipos = TipoComida.all
-        @titulo_link = "Mensaje desde el controlador"
+        @titulo_link = "Registrar nuevo tipo de comida"
     end
 
-    # GET /nuevo_tipo_comida
-    def nuevo
+    # GET /tipos_comidas/nuevo
+    def crear
         @nuevo_tipo_comida= TipoComida.new
     end
 
+    # GET /tipos_comidas/:id
+    def mostrar
+        #vista para mostrar el detalle de un tipo de comida
+        #por ejemplo, podríamos mostrar todos los restaurantes adjuntos
+    end
+
+    # GET /tipos_comidas/:id/editar
+    def editar
+        #mostrar el formulario con los datos
+    end
+
     #POST /nuevo_tipo_comida
-    def crear
+    def guardar
         #guardar lo que llegue del formulario en la base de datos
         datos_tipo_comida = params.require(:tipo_comida).permit(:tipo)
         nuevo_tipo = TipoComida.new(datos_tipo_comida)
