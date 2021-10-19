@@ -15,7 +15,7 @@
         <th> <%= tipo_comida.tipo %> </th>
         <td>
             <!--                                              tipo_comida-->
-            <%= link_to 'Borrar', eliminar_tipo_comida_path(tipo_comida), method: :delete %>
+            <%= link_to 'Borrar', tipo_comida_path(tipo_comida), method: :delete %>
         </td>
     </tr>
 <% end %>
