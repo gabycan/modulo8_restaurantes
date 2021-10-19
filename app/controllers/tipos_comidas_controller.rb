@@ -2,7 +2,7 @@ class TiposComidasController < ApplicationController
 
     # GET /tipos_comidas
     def listar
-        @todos_los_tipos = TipoComida.all.order (id asc)
+        @todos_los_tipos = TipoComida.all.order(id: :asc)
         @titulo_link = "Registrar nuevo tipo de comida"
     end
 
@@ -36,7 +36,7 @@ class TiposComidasController < ApplicationController
 
     def actualizar
         #encontrar el registro que quiero editar en la BD
-        @tipo_comida = Tipo.Comida.find(params[:id])
+        @tipo_comida = TipoComida.find(params[:id])
         datos_tipo_comida = params.require(:tipo_comida).permit(:tipo)
         #actualizar los campos necesarios
         @tipo_comida.tipo = datos_tipo_comida[:tipo]
