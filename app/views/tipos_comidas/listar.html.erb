@@ -1,4 +1,6 @@
-<h1> Listar los tipos de restaurantes </h1>
+<h1> 
+<i class="fas fa-fish"></i>
+Listar los tipos de restaurantes </h1>
 
 <%= link_to @titulo_link, nuevo_tipo_comida_path %>
 
@@ -13,6 +15,7 @@
     <tr>
         <td> <%= tipo_comida.id %> </td>
         <td> 
+            <i class="fas fa-fish"></i>
             <%= link_to tipo_comida_path(tipo_comida) do %> 
                 <%= tipo_comida.tipo %>
             <% end %>
@@ -20,9 +23,11 @@
         <td>
             <!--                                              tipo_comida-->
             <%= link_to tipo_comida_path(tipo_comida), method: :delete, data: { confirm: '¿Está seguro que quiere eliminar el registro?'} do %>
+                <i class="fas fa-eraser"></i>
                 Borrar
             <% end %>
             <%= link_to editar_tipo_comida_path(tipo_comida) do %>
+                <i class="fas fa-edit"></i>
                 Editar
             <% end %>   
         </td>
