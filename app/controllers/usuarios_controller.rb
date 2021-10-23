@@ -43,11 +43,11 @@ class UsuariosController <ApplicationController
     def eliminar
         @usuario = Usuario.find(params[:id])
         if @usuario.destroy #intenta eliminar un registro
-            flash[:eliminar] = "Usuario #{ @usuario.nombre_usuario} eliminado"
+            flash[:eliminar] = 
+            "Usuario #{ @usuario.nombre_usuario} eliminado"
         else
             flash[:eliminar] = "NO se pudo eliminar"
         end
         redirect_to nuevo_usuario_path
     end
-
 end

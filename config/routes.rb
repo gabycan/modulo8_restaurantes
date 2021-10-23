@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   patch 'tipos_comidas/:id',      to: 'tipos_comidas#actualizar'
   delete 'tipos_comidas/:id',     to: 'tipos_comidas#eliminar'
 
-
+# Puntajes
 
 
 
