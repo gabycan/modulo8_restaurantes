@@ -8,18 +8,34 @@ class UsuariosController <ApplicationController
 
     #GET /usuarios/:id
         def mostrar
-            @usuario = Usuario.find(params)
+            @usuario = Usuario.find(params[:id])
+        end
+
+    #GET /usuarios/:id/editar
+        def editar
+            @usuario = Usuario.find(params[:id])
         end
 
     # POST /usuarios
     def guardar
-        datos_usuario = params.require(:usuario)
-        .permit(nombre_usuario, :password_usuario)
+        datos_usuario = params.require(:usuario).permit(nombre_usuario, :password, :password_confirmation)
         @usuario = Usuario.new(datos_usuario)
-        if @usuario.after_save
+        if @usuario.save
             #mostrar la vista "consultar" usuario
+            redirect_to usuario_path(@usuario)
         else
             render :crear
+        end
+    end
+
+    #PATCH /usuarios/:id
+    def actualizar
+        @usuario = Usuario.find(params[:id])
+        datos_usuario = params.require(:usuario).permit(:nombre_usuario, :password, ::password_confirmation)
+        if @usuario.update(datos_usuario)
+            redirect_to usuario_path(@usuario)
+        else
+            render :editar
         end
     end
 end
