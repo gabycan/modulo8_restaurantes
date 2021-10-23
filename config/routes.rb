@@ -11,4 +11,21 @@ Rails.application.routes.draw do
   patch 'tipos_comidas/:id',      to: 'tipos_comidas#actualizar'
   delete 'tipos_comidas/:id',     to: 'tipos_comidas#eliminar'
 
+
+
+
+
+
+
+
+
+
+
+
+# Usuarios
+
+get 'usuarios/nuevo',     to: 'usuarios#crear',   as: 'nuevo_usuario'
+get 'usuarios/:id',       to: 'usuarios#mostrar', as: 'usuario'
+
+post 'usuarios',          to: 'usuarios#guardar', as: 'usuarios'
 end
