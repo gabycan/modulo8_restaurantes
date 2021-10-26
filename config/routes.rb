@@ -37,4 +37,5 @@ delete 'usuarios/:id',          to: 'usuarios#eliminar'
 get 'restaurantes/nuevo',       to: 'restaurantes#crear', as: 'nuevo_restaurante'
 
 post 'restaurantes',            to: 'restaurantes#guardar'
+
 end
