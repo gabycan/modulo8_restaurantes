@@ -32,4 +32,9 @@ post 'usuarios',                to: 'usuarios#guardar', as: 'usuarios'
 patch 'usuarios/:id',           to: 'usuarios#actualizar'
 put 'usuarios/:id',             to: 'usuarios#actualizar' #buena práctica colocar el PUT
 delete 'usuarios/:id',          to: 'usuarios#eliminar'
+
+#Restaurantes
+get 'restaurantes/nuevo',       to: 'restaurantes#crear', as: 'nuevo_restaurante'
+
+post 'restaurantes',            to: 'restaurantes#guardar'
 end

@@ -1,0 +1,18 @@
+<h1>Registrar nuevo restaurante</h1>
+
+<%= form_with(model: @restaurante) do |formulario| %>
+
+<div class="mb-3">
+    <%= formulario.label :nombre, class: 'form-label' %>
+    <%= formulario.text_field :nombre, class: 'form-control' %>
+</div>
+<div class="mb-3">
+    <%= formulario.label :tipo_comida, class: 'form-label' %>
+    <%= formulario.select :tipo_comida, 
+        options_from_collection_for_select(@tipos_comidas, :id, :tipo),
+        {},
+        class: "form-select" %>
+</div>
+
+    <%= formulario.submit %>
+<% end %>
