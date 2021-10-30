@@ -7,10 +7,10 @@
     <%= formulario.text_field :nombre, class: 'form-control' %>
 </div>
 <div class="mb-3">
-    <%= formulario.label :tipo_comida, class: 'form-label' %>
-    <%= formulario.select :tipo_comida, 
-        options_from_collection_for_select(@tipos_comidas, :id, :tipo),
-        {},
+    <%= formulario.label :tipo_comida_id, class: 'form-label' %>
+    <%= formulario.select :tipo_comida_id, 
+        options_from_collection_for_select(@tipos_comidas, :id, :tipo, nil),
+        { include_blank: 'Elige un tipo de comida' },
         class: "form-select" %>
 </div>
 

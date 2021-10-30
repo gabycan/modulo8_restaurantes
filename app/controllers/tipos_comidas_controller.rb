@@ -1,4 +1,10 @@
+#Los controladores son en plural y hacen referencia al modelo
 class TiposComidasController < ApplicationController
+
+    before_action :asignar_tipo_comida, only: [:mostrar, :editar, :actualizar, :eliminar]
+
+    #before_action  :mostrar_mensaje_antes, only: [:listar]
+    #after_action   :mostar_mensaje_después
 
     # GET /tipos_comidas
     def listar
@@ -17,27 +23,26 @@ class TiposComidasController < ApplicationController
         #por ejemplo, podríamos mostrar todos los restaurantes adjuntos
         @tipo_comida = TipoComida.find(params:[id])
     end
-
     # GET /tipos_comidas/:id/editar
     def editar
         #mostrar el formulario con los datos de un registro para cambiarlos
         @tipo_comida = TipoComida.find(params[:id])
     end
-
-    #POST /nuevo_tipo_comida
+    #POST /tipos_comidas
     def guardar
         #guardar lo que llegue del formulario en la base de datos
-        datos_tipo_comida = params.require(:tipo_comida).permit(:tipo)
-        nuevo_tipo = TipoComida.new(datos_tipo_comida)
-        nuevo_tipo.save
-
-        redirect_to tipos_comidas_path
+        datos_tipo_comida = params.require(:tipo_comida).permit(:tipo) #REPETIDO 💗
+        @tipo_comida = TipoComida.new(datos_tipo_comida)
+        if @tipo_comida.save #pregunta por las validaciones, SI pasa todas se guarda, SINO agregar un hash de errores
+            redirect_to tipos_comidas_path
+        else
+            render :crear #prestado una vista   
+        end
     end
 
     def actualizar
         #encontrar el registro que quiero editar en la BD
-        @tipo_comida = TipoComida.find(params[:id])
-        datos_tipo_comida = params.require(:tipo_comida).permit(:tipo)
+        datos_tipo_comida = params.require(:tipo_comida).permit(:tipo) #REPETIDO 💗
         #actualizar los campos necesarios
         @tipo_comida.tipo = datos_tipo_comida[:tipo]
         #guardar los cambios en la base de datos
@@ -46,13 +51,26 @@ class TiposComidasController < ApplicationController
         redirect_to tipos_comidas_path
     end
 
-    #DELETE tipos_comidas/:id
+    #DELETE /tipos_comidas/:id
     def eliminar
         #pasos para eliminar un registro
         #1. buscar el registro por ID
-        tipo = TipoComida.find(params[:id])
         #2. intentar eliminar el registro
-        tipo.destroy
+        @tipo_comida.destroy
         redirect_to tipos_comidas_path
+    end
+
+    private #todos los métodos de aquí hacia abajo son PRIVADOS
+
+    def asignar_tipo_comida
+        @tipo_comida = TipoComida.find(params[:id])
+    end
+
+    def mostrar_mensajes_antes
+        puts "HOLA ANTES DEL ACTION 🚒"
+    end
+
+    def mostrar_mensajes_después
+        puts "HOLA DESPUÉS DEL ACTION 🖖"
     end
 end
