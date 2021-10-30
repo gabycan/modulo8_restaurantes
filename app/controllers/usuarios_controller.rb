@@ -25,11 +25,9 @@ class UsuariosController <ApplicationController
 
     # POST /usuarios
     def guardar
-        datos_usuario = params.require(:usuario).permit(nombre_usuario, :password, :password_confirmation)
-        @usuario = Usuario.new(datos_usuario)
+        @usuario = Usuario.new(params_usuario)
         if @usuario.save
-            #mostrar la vista "consultar" usuario
-            redirect_to usuario_path(@usuario)
+            redirect_to usuario_path(@usuario) #mostrar la vista "consultar" usuario
         else
             render :crear
         end
@@ -37,9 +35,7 @@ class UsuariosController <ApplicationController
 
     #PATCH /usuarios/:id
     def actualizar
-        @usuario = Usuario.find(params[:id])
-        datos_usuario = params.require(:usuario).permit(:nombre_usuario, :password, :password_confirmation)
-        if @usuario.update(datos_usuario)
+        if @usuario.update(params_usuario)
             redirect_to usuario_path(@usuario)
         else
             render :editar
@@ -48,7 +44,6 @@ class UsuariosController <ApplicationController
 
     #DELETE /usuarios/:id
     def eliminar
-        @usuario = Usuario.find(params[:id])
         if @usuario.destroy #intenta eliminar un registro
             flash[:eliminar] = 
             "Usuario #{ @usuario.nombre_usuario} eliminado"
