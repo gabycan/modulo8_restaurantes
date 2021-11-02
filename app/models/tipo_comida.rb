@@ -13,7 +13,7 @@ class TipoComida < ApplicationRecord
     private
     def convertir_a_minusculas
         puts "ANTES DE LA VALIDACIÓN 🛴"
-        self.tipo.donwcase!
+        self.tipo.downcase!
         #self.tipo = self.tipo.downcase
         #@tipo.capitalize!
     end
