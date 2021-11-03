@@ -18,17 +18,17 @@
         <% end %>
     </div>
     <div class="mb-3">
-        <%= formulario.label :restaurante_id, class: 'form-label'  %>
+        <%= formulario.label :restaurante_id, class: 'form-label' %>
         <%= formulario.select :restaurante_id, 
         options_from_collection_for_select(restaurantes, :id, :nombre, base_plato.restaurante_id),
         { include_blank: 'Elige un restaurante' },
         class: "form-select" %>
-        <% %>
+        <% if base_plato.errors[:restaurante_id].any? %>
             <div>
-                <%= %>
+                <%= base_plato.errors[:restaurante_id].first %>
             </div>
         <% end %>
     </div>
 
-    <%= fomrmulario.submit %>
+    <%= formulario.submit %>
 <% end%>
