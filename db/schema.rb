@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_010146) do
+ActiveRecord::Schema.define(version: 2021_11_03_021010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(version: 2021_10_26_010146) do
     t.index ["usuario_id"], name: "index_puntajes_platos_on_usuario_id"
   end
 
+  create_table "puntajes_restaurantes", force: :cascade do |t|
+    t.bigint "puntaje_id", null: false
+    t.bigint "restaurante_id", null: false
+    t.bigint "usuario_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["puntaje_id"], name: "index_puntajes_restaurantes_on_puntaje_id"
+    t.index ["restaurante_id"], name: "index_puntajes_restaurantes_on_restaurante_id"
+    t.index ["usuario_id"], name: "index_puntajes_restaurantes_on_usuario_id"
+  end
+
   create_table "restaurantes", force: :cascade do |t|
     t.string "nombre"
     t.bigint "tipo_comida_id", null: false
@@ -93,5 +104,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_010146) do
   add_foreign_key "puntajes_platos", "platos"
   add_foreign_key "puntajes_platos", "puntajes"
   add_foreign_key "puntajes_platos", "usuarios"
+  add_foreign_key "puntajes_restaurantes", "puntajes"
+  add_foreign_key "puntajes_restaurantes", "restaurantes"
+  add_foreign_key "puntajes_restaurantes", "usuarios"
   add_foreign_key "restaurantes", "tipos_comidas"
 end
